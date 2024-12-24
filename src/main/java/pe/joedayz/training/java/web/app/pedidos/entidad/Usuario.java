@@ -11,6 +11,7 @@ import javax.persistence.StoredProcedureParameter;
 @NamedStoredProcedureQueries(
     {
         @NamedStoredProcedureQuery(
+
             name="usuario.validarAcceso",
             procedureName="PKG_USUARIO.SP_VALIDAR_ACCESO",
             resultClasses= Usuario.class,
@@ -19,7 +20,18 @@ import javax.persistence.StoredProcedureParameter;
                 @StoredProcedureParameter(mode=ParameterMode.IN,  name="P_USUARIO", type=String.class),
                 @StoredProcedureParameter(mode=ParameterMode.IN,  name="P_CLAVE", type=String.class)
             }
+        ),
+
+        @NamedStoredProcedureQuery(
+            name="usuario.findByLikeObject",
+            procedureName="PKG_USUARIO.SP_BUSCARXCRITERIOS",
+            resultClasses= Usuario.class,
+            parameters={
+                @StoredProcedureParameter(mode=ParameterMode.REF_CURSOR,name="P_C_CURSOR", type=void.class),
+                @StoredProcedureParameter(mode=ParameterMode.IN,  name="P_NOMBRE", type=String.class)
+            }
         )
+
     }
 )
 

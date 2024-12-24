@@ -50,9 +50,23 @@ public class UsuarioDAOImpl implements UsuarioDAO {
   }
 
   @Override
-  public List<Usuario> findByLikeObject(Usuario t)
+  public List<Usuario> findByLikeObject(Usuario usuario)
       throws PersistenciaExcepcion {
-    return null;
+    List<Usuario> lstUsuario= null;
+    try {
+      StoredProcedureQuery spq = em.createNamedStoredProcedureQuery("usuario.findByLikeObject");
+
+      spq.setParameter("P_NOMBRE", usuario.getNombre());
+
+      if (spq.execute()) {
+        lstUsuario = (List<Usuario>)spq.getOutputParameterValue("P_C_CURSOR");
+      }
+      em.close();
+
+    } catch (Exception e) {
+      throw new PersistenceException(e);
+    }
+    return lstUsuario;
   }
 
   @Override
