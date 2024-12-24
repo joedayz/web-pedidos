@@ -275,7 +275,7 @@ public class ProductoMB extends GenericMB {
 		private JasperPrint buildReport() {
 	        JasperPrint jasperPrint = null;
 	        ServletContext sc=(ServletContext)FacesContext.getCurrentInstance().getExternalContext().getContext();
-	        String path="WEB-INF\\classes\\pe\\edu\\galaxy\\training\\java\\web\\app\\pedidos\\presentacion\\reportes\\";
+	        String path="/reportes/";
 	        
 	        String realPath = sc.getRealPath("/")+path;
 	        String reporte = realPath + "producto_listado_rpt.jasper";
@@ -283,7 +283,7 @@ public class ProductoMB extends GenericMB {
 	        @SuppressWarnings("rawtypes")
 			Map map = new HashMap();
 	        String pathSO=sc.getRealPath("/");
-	        String logo =pathSO+ "resources\\img\\galaxy-training-logo.png";
+	        String logo =pathSO+ "resources/img/netun_ogo.png";
 	        
 	        map.put("prm_logo_izquierda", logo);
 	        map.put("prm_usuario", "Lucas Carpio");
