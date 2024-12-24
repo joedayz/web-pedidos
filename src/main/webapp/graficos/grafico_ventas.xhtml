@@ -1,0 +1,88 @@
+
+<ui:composition template="/template/master.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:define name="title">
+        .:Pedidos por cliente:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Pedidos por cliente </span>
+	</ui:define>
+
+	<ui:define name="content">
+		<div id="container"
+			style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto">
+		</div>
+
+	</ui:define>
+
+	<ui:define name="footerCont">
+	
+		<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+		<script>
+			$(document).on('ready', function() {
+				alert('ready');
+				graficar();
+			});
+
+			function graficar() {
+
+				var options = {
+					chart : {
+						renderTo : 'container',
+						type : 'pie'
+					},
+					title : {
+						text : '',
+						x : -20
+					//center
+					},
+
+					tooltip : {
+						pointFormat : '<b>{point.percentage:.1f}%</b>'
+					},
+
+					plotOptions : {
+						pie : {
+							allowPointSelect : true,
+							cursor : 'pointer',
+							depth : 35,
+							dataLabels : {
+								enabled : true,
+								format : '{point.name} ({point.percentage:.1f} %)',
+								connectorWidth : 2
+							}
+						}
+					},
+					series : [ {
+						type : 'pie',
+						name : "",
+						data : []
+					} ]
+				};
+
+				dirURL = "#{request.contextPath}/estadistica?"; //dirURL =dirURL+' tipoOperacion='+tipoOperacion;
+				//{tipoOperacion : tipoOperacion,anio:anio}
+				$.get(dirURL, null, function(json) {
+				 alert(JSON.stringify(json.series));
+
+					var data = json.series
+					$.each(data, function(i, point) {
+						point.y = point.data;
+					});
+					options.series[0].data = data;
+					chart = new Highcharts.Chart(options);
+
+				});
+			};
+		</script>
+	</ui:define>
+</ui:composition>

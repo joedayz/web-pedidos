@@ -1,0 +1,130 @@
+ <ui:composition template="/template/master.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:define name="title">
+        .:Listado de Pedidos:.
+    </ui:define>
+
+    <ui:define name="titleCont">
+        <span>listado de Pedidos </span>
+    </ui:define>
+
+    <ui:define name="content">
+		<h:form>
+			<div class="row">
+            <div class="col-sm-6">
+               <div class="form-group">
+                   <h:outputLabel for="cliente"
+                   				  value="Nombres:"
+                   				  styleClass="control-label"/>
+
+                   <p:inputText 	autocomplete="off"
+                   					id="cliente"
+                   					styleClass="form-control"
+                   					value="#{pedidoMB.pedido.cliente.razonSocial}"
+                   					maxlength="240"
+                   					label="cliente"/>
+               </div>
+            </div>
+
+
+    	</div>
+      <div class="row">
+            <div class="col-sm-12 text-right" >
+              <div class="form-group box-main-btn">
+                <br/>
+                <p:commandButton  value="Limpiar" update="lstPedido"
+                            actionListener="#{pedidoMB.limpiar()}" icon="icon-eraser" styleClass="btn btn-default"
+                            ajax="false" />
+                <p:commandButton  value="Buscar" update="lstPedido"
+                            actionListener="#{pedidoMB.buscar()}" icon="icon-magnifying-glass" styleClass="btn btn-default btn-border"
+                            ajax="false" />
+                  <p:commandButton  value="Nuevo"
+                            action="#{pedidoMB.nuevo()}"
+                            styleClass="btn btn-primary"
+                            icon="icon-add-to-list"
+                            ajax="false" />
+                </div>
+            </div>
+      </div>
+    	<div class="row">
+    		<div class="col-sm-12">
+    		<div class="form-group table-responsive box-table-class">
+
+        							<p:dataTable 	id="lstPedido"
+                                    				var="pedidoVO"
+                                    				value="#{pedidoMB.lstPedidoVO}"
+                                    				rowKey="#{pedidoVO.id}"
+	                                                paginator="true"
+	                                                paginatorPosition="top"
+	                                                rowsPerPageTemplate="10,20,30,40,50"
+	                                                rows="10"
+	                                                styleClass="table table-bordered"
+		                                    		emptyMessage="No existen registros"
+                                    				rowIndexVar="item"
+                                    				style="margin-bottom:0">
+
+                                        <p:column headerText="Item" style="width:40px;text-align:center">
+                                            <h:outputText value="#{item + 1}" />
+                                        </p:column>
+
+										<p:column headerText="Pedido" style="width:80px;text-align:center">
+											<h:outputText value="#{pedidoVO.idPedido}"/>	
+										</p:column>
+
+										<p:column headerText="Cliente"  style="width:320px">
+											<h:outputText value="#{pedidoVO.cliente}"/>
+										</p:column>
+										<p:column headerText="Fecha Atención"  style="text-align:center">
+											<h:outputText value="#{pedidoVO.fechaAtencion}"/>
+										</p:column>
+										<p:column headerText="Total" style="text-align:right;color:blue">
+											<h:outputText value="#{pedidoVO.total}"/>
+										</p:column>
+										<p:column headerText="Accion" style="width:120px;text-align:center" exportable="false">
+											<p:commandButton
+													title="Modificar"
+													action="#{pedidoMB.modificar(pedidoVO)}"
+													ajax="false"
+													icon="ui-icon ui-icon-pencil"
+													styleClass="colorSuccess"/>
+											<p:commandButton
+													icon="ui-icon ui-icon-trash"
+													title="Eliminar"
+													actionListener="#{pedidoMB.eliminar(pedidoVO)}"
+													ajax="false"
+											/>
+										</p:column>
+                                    </p:dataTable>
+    		</div>
+    		</div>
+    	</div>
+    	
+    	<div class="row">
+    		<div class="col-sm-12 text-right">
+    			<p:commandButton 	value="PDF"
+                					action="#{pedidoMB.exportarPDF()}"
+                					styleClass="btn btn-default"
+                					ajax="false" />
+               	<p:commandButton 	value="XLS"
+                					action="#{pedidoMB.exportExcel()}"
+                					styleClass="btn btn-default"
+                					ajax="false" />
+    		</div>
+    	</div>
+
+
+		</h:form>
+    </ui:define>
+
+    <ui:define name="footerCont">
+        <script type="text/javascript" charset="utf-8">
+          $("#sidebar li").removeClass("active");
+           $("#sidebar-4").addClass("active");
+        </script>
+    </ui:define>
+</ui:composition>

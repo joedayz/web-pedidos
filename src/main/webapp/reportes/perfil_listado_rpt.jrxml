@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LISTADO DE PERFILES" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="1017cabc-e844-43a2-87ff-0800b3fb5ce1">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="prm_usuario" class="java.lang.String"/>
+	<parameter name="prm_logo_izquierda" class="java.lang.String"/>
+	<parameter name="prm_filtro" class="java.lang.String"/>
+	<parameter name="prm_sige" class="java.lang.String"/>
+	<parameter name="prm_empresa" class="java.lang.String"/>
+	<parameter name="prm_modulo" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="idPerfil" class="java.lang.Integer"/>
+	<field name="nombre" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="113">
+			<staticText>
+				<reportElement key="staticText-1" x="141" y="51" width="33" height="13" uuid="87532f93-ac1f-4881-b3df-3930049cca55"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Filtro:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="408" y="25" width="116" height="15" uuid="cc171d14-5e81-4adf-849f-8716e9474f9d"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-3" x="141" y="25" width="211" height="20" forecolor="#212878" backcolor="#CCCCFF" uuid="7012c520-d505-49f4-b96b-a7c1a9821301"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true" isItalic="false" isUnderline="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[LISTADO DE PERFILES]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="174" y="51" width="178" height="49" uuid="7eebd0a7-b657-40a1-ae68-c94b6c59f121"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{prm_filtro}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="9" y="73" width="114" height="10" uuid="a1d40494-0996-499d-9120-eb192ae0a75c"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{prm_empresa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="358" y="38" width="48" height="15" uuid="90f8dbb0-a0ef-46a4-b1fa-3266da03ecb2"/>
+				<textElement>
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Usuario:]]></text>
+			</staticText>
+			<image>
+				<reportElement key="image-1" x="21" y="13" width="93" height="60" uuid="8a9f07bf-02f9-49f3-8702-694dd92e9a4e"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<imageExpression><![CDATA[$P{prm_logo_izquierda}]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement x="409" y="38" width="115" height="15" uuid="302153dc-c42d-4d14-bb3a-b35177da814f"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{prm_usuario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="358" y="25" width="48" height="15" uuid="8f3cf3e0-0336-4f93-a009-c2579981554b"/>
+				<textElement>
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha/Hora:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<columnHeader>
+		<band height="18">
+			<rectangle>
+				<reportElement x="11" y="0" width="513" height="13" backcolor="#0033FF" uuid="8fe03d60-dfd2-4fb9-8296-4d54a24b23da"/>
+			</rectangle>
+			<staticText>
+				<reportElement key="staticText-1" x="11" y="2" width="51" height="13" forecolor="#FFFFFF" uuid="3e23de53-254e-457d-a795-23d05972a961"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="64" y="1" width="458" height="13" forecolor="#FFFFFF" uuid="b37617ff-b13e-429f-9b43-cc27a42bb92d"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line-4" x="10" y="15" width="514" height="1" forecolor="#000000" backcolor="#9999FF" uuid="314d75f3-6da9-4290-bc72-a6758808c36e"/>
+			</line>
+			<line>
+				<reportElement key="line-4" x="10" y="0" width="514" height="1" forecolor="#000000" backcolor="#9999FF" uuid="695289b9-76b2-4c03-920d-8574f8a10184"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="19">
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="9" y="0" width="1" height="17" isPrintWhenDetailOverflows="true" uuid="fafcdacf-3952-489e-a4fc-96b91cc2c715"/>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="11" y="0" width="51" height="13" uuid="6843c7c1-f637-43ab-aaaf-bdb0d9c619a3"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{idPerfil}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="64" y="3" width="458" height="13" uuid="8d3d7737-42df-46b6-96c3-28373a6181e9"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="63" y="0" width="1" height="16" isPrintWhenDetailOverflows="true" uuid="a526ab5e-2ff0-4161-8b19-1d08e04bf3af"/>
+			</line>
+			<line>
+				<reportElement key="line-4" x="10" y="16" width="514" height="1" forecolor="#000000" backcolor="#9999FF" uuid="23592a05-32e1-4397-a4e8-cc5214e484b6"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="524" y="0" width="1" height="17" isPrintWhenDetailOverflows="true" uuid="ab8c51f4-18e6-4d2e-9917-e58c1370ec88"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="29">
+			<line>
+				<reportElement key="line-4" x="10" y="2" width="512" height="1" forecolor="#000000" backcolor="#9999FF" uuid="9bca07ef-a83b-4dac-87a1-16c2e2013c75"/>
+			</line>
+			<textField>
+				<reportElement x="404" y="8" width="80" height="15" uuid="c42e0bfd-2fed-4bd9-b01b-f75b5b4c4c2c"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="484" y="8" width="40" height="15" uuid="de7e0c08-b199-4617-a721-b79e039b4356"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" "+$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="15" y="9" width="323" height="15" uuid="ff5fa179-c5e4-4b0a-a530-f621aff47e24"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{prm_sige}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="288" y="7" width="100" height="14" uuid="6e31512a-385f-4de2-9119-f4a85b4b37eb"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{prm_modulo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="238" y="7" width="48" height="14" uuid="486d3137-36b6-440d-8768-1f08dad4936f"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Módulo:]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

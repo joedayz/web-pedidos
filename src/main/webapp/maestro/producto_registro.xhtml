@@ -1,0 +1,134 @@
+ <ui:composition template="/template/master.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:define name="title">
+        .:Registro de Productos:.
+    </ui:define>
+
+    <ui:define name="titleCont">
+        <span>Registro de Productos </span>
+    </ui:define>
+
+    <ui:define name="content">
+		<h:form>
+
+			<div class="row">
+
+            	<div class="col-sm-4">
+               		<div class="form-group">
+                   		<h:outputLabel 	for="codigo"
+                   					  	value="Código:"
+                   					  	styleClass="control-label"/>
+
+                   		<p:inputText 	autocomplete="off"
+                   						id="codigo"
+                   						readonly="true"
+                   						styleClass="form-control"
+                   						value="#{productoMB.producto.idProducto}"
+                   						maxlength="120"
+                   						label="codigo"/>
+               		</div>
+            	</div>
+			</div>
+
+            <div class="row">
+
+             <div class="col-sm-4">
+               <div class="form-group">
+                   <h:outputLabel for="nombre"
+                   				  value="Nombre:"
+                   				  styleClass="control-label"/>
+
+                   <p:inputText 	autocomplete="off"
+                   					id="nombre"
+                   					styleClass="form-control"
+                   					value="#{productoMB.producto.nombre}"
+                   					maxlength="120"
+                   					label="nombre"/>
+               </div>
+            </div>
+    		</div>
+    		<div class="row">
+
+             <div class="col-sm-4">
+               <div class="form-group">
+                   <h:outputLabel for="descripcion"
+                   				  value="Descripción:"
+                   				  styleClass="control-label"/>
+
+                   <p:inputTextarea autocomplete="off"
+                   					id="descripcion"
+                   					styleClass="form-control"
+                   					value="#{productoMB.producto.descripcion}"
+                   					cols="40"
+                   					label="descripcion"/>
+               </div>
+            </div>
+    		</div>
+    		
+			<div class="row">
+
+             <div class="col-sm-4">
+               <div class="form-group">
+                   <h:outputLabel for="precio"
+                   				  value="Precio:"
+                   				  styleClass="control-label"/>
+
+                   <p:inputText 	autocomplete="off"
+                   					id="precio"
+                   					styleClass="form-control"
+                   					value="#{productoMB.producto.precio}"
+                   					label="precio"/>
+               </div>
+            </div>
+    		</div>
+    		<div class="row">
+
+             <div class="col-sm-4">
+               <div class="form-group">
+                   <h:outputLabel for="stock"
+                   				  value="Stock:"
+                   				  styleClass="control-label"/>
+
+                   <p:inputText 	autocomplete="off"
+                   					id="stock"
+                   					styleClass="form-control"
+                   					value="#{productoMB.producto.stock}"
+                   					label="stock"/>
+               </div>
+            </div>
+    		</div>
+
+    	<div class="row">
+    	         <div class="col-sm-4 text-right" >
+            			<div class="form-group box-main-btn">
+
+            					<p:commandButton 	value="Grabar"
+                									actionListener="#{productoMB.grabar()}"
+                									styleClass="btn btn-primary "
+                                  					icon="icon-save"
+                									ajax="false" />
+                				<p:commandButton 	value="Cancelar"
+                									actionListener="#{usuarioMB.cancelar()}"
+                									styleClass="btn btn-default"
+                									ajax="false" />
+
+            			</div>
+            </div>
+            </div>
+            		<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+		</h:form>
+    </ui:define>
+
+    <ui:define name="footerCont">
+        <script type="text/javascript" charset="utf-8">
+          $("#sidebar li").removeClass("active");
+           $("#sidebar-2").addClass("active");
+        </script>
+    </ui:define>
+</ui:composition>

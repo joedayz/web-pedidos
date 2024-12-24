@@ -1,0 +1,296 @@
+ <ui:composition template="/template/master.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:define name="title">
+        .:Registro de Pedidos:.
+    </ui:define>
+
+    <ui:define name="titleCont">
+        <span>Registro de Pedidos </span>
+    </ui:define>
+
+    <ui:define name="content">
+		<h:form id="frmPedido" styleClass="box_tabs_style">
+		<p:growl id="growl" sticky="true" showDetail="true" life="3000" />		
+		  <p:fieldset legend="Cliente" toggleable="true" toggleSpeed="500">
+			<div class="row">
+        	<div class="col-sm-4">
+           		<div class="form-group">
+               		<h:outputLabel 	for="ruc"
+               					  	value="RUC:"
+               					  	styleClass="control-label"/>
+
+               		<p:inputText 	autocomplete="off"
+               						id="ruc"
+               						styleClass="form-control"
+               						value="#{pedidoMB.cliente.ruc}"
+               						maxlength="120"
+               						label="ruc"/>
+           		</div>
+        	</div>
+        	<div class="col-sm-2">
+        		<div class="form-group box-main-btn">
+                            <span style="display: block;height: 30px;"></span>
+        	            			<p:commandButton 	value="Buscar"
+            											actionListener="#{pedidoMB.buscarClienteXRuc()}"
+                                  						styleClass="btn btn-default btn-border"
+                                  						icon="icon-magnifying-glass"
+            											ajax="true"
+            											update="razonSocial,direccion,growl" />
+        		</div>
+        	</div>
+			</div>
+
+			<div class="row">
+        	<div class="col-sm-6">
+           		<div class="form-group">
+               		<h:outputLabel 	for="razonSocial"
+               					  	value="Razón Social :"
+               					  	styleClass="control-label"/>
+
+               		<p:inputText 	autocomplete="off"
+               						readonly="true"
+               						id="razonSocial"
+               						styleClass="form-control"
+               						value="#{pedidoMB.cliente.razonSocial}"
+               						maxlength="120"
+               						label="razonSocial"/>
+           		</div>
+        	</div>
+        	<div class="col-sm-6">
+           		<div class="form-group">
+               		<h:outputLabel 	for="direccion"
+               					  	value="Dirección :"
+               					  	styleClass="control-label"/>
+
+               		<p:inputText 	autocomplete="off"
+               						readonly="true"
+               						id="direccion"
+               						styleClass="form-control"
+               						value="#{pedidoMB.cliente.direccion}"
+               						maxlength="120"
+               						label="direccion"/>
+           		</div>
+        	</div>
+			</div>
+
+		</p:fieldset>
+      <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group"></div>
+        </div>
+      </div>
+		  <p:fieldset legend="Producto" toggleable="true" toggleSpeed="500">
+			<div class="row">
+        	<div class="col-sm-4">
+           		<div class="form-group">
+               		<h:outputLabel 	for="nombre"
+               					  	value="Nombre:"
+               					  	styleClass="control-label"/>
+
+               		<p:inputText 	autocomplete="off"
+               						id="nombre"
+               						styleClass="form-control"
+               						value="#{pedidoMB.producto.nombre}"
+               						maxlength="120"
+               						label="nombre"/>
+           		</div>
+        	</div>
+        	<div class="col-sm-2">
+        		<div class="form-group box-main-btn">
+                            <span style="display: block;height: 30px;"></span>
+        	            			<p:commandButton 	value="Buscar"
+            											actionListener="#{pedidoMB.buscarProducto()}"
+            											styleClass="btn btn-default btn-border"
+                                  						icon="icon-magnifying-glass"
+            											ajax="true"
+            											update="lstProducto" />
+        		</div>
+        	</div>
+			</div>
+
+			<div class="row">
+    		<div class="col-sm-12">
+    		<div class="form-group table-responsive box-table-class">
+
+        							<p:dataTable 	id="lstProducto"
+                                    				var="producto"
+                                    				value="#{pedidoMB.lstProducto}"
+	                                                paginator="true"
+	                                                paginatorPosition="top"
+	                                                rowsPerPageTemplate="10,20,30,40,50"
+	                                                rows="10"
+	                                                styleClass="table table-bordered"
+		                                    		emptyMessage="No existen registros"
+                                    				rowIndexVar="item"
+                                    				style="margin-bottom:0">
+
+                                        <p:column headerText="Item" style="width:40px;text-align:center">
+                                            <h:outputText value="#{item + 1}" />
+                                        </p:column>
+
+										<p:column headerText="Nombre">
+											<h:outputText value="#{producto.nombre}"/>
+										</p:column>
+										<p:column headerText="Precio">
+											<h:outputText value="#{producto.precio}"/>
+										</p:column>
+										<p:column headerText="Stock">
+											<h:outputText value="#{producto.stock}"/>
+										</p:column>
+
+										<p:column headerText="Accion" style="width:120px;text-align:center" exportable="false">
+											<p:commandButton
+													title="Modificar"
+													action="#{pedidoMB.agregarProducto(producto)}"
+													ajax="true"
+													icon="ui-icon ui-icon-pencil"
+													styleClass="colorSuccess"
+													update="frmPedido:lstPedidoItem,frmPedido:importe" />
+										</p:column>
+                                    </p:dataTable>
+    		</div>
+    		</div>
+
+
+			</div>
+
+		</p:fieldset>
+      <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group"></div>
+        </div>
+      </div>
+
+		<p:fieldset legend="Detalle Pedido" toggleable="true" toggleSpeed="500">
+
+					<div class="row">
+    		<div class="col-sm-12">
+    		<div class="form-group table-responsive box-table-class">
+
+        							<p:dataTable 	id="lstPedidoItem"
+                                    				var="pedidoItem"
+                                    				value="#{pedidoMB.pedido.pedidoItems}"
+	                                                paginator="true"
+	                                                paginatorPosition="top"
+	                                                rowsPerPageTemplate="10,20,30,40,50"
+	                                                rows="10"
+	                                                styleClass="table table-bordered"
+		                                    		emptyMessage="No existen registros"
+                                    				rowIndexVar="item"
+                                    				style="margin-bottom:0">
+
+                                        <p:column headerText="Item" style="width:40px;text-align:center">
+                                            <h:outputText value="#{item + 1}" />
+                                        </p:column>
+
+										<p:column headerText="Nombre">
+											<h:outputText value="#{pedidoItem.producto.nombre}"/>
+										</p:column>
+										<p:column headerText="Precio">
+											<h:outputText value="#{pedidoItem.precio}"/>
+										</p:column>
+										<p:column headerText="Cantidad">
+											<h:inputText value="#{pedidoItem.cantidad}"/>
+										</p:column>
+										<p:column headerText="Sub Total">
+											<h:outputText value="#{pedidoItem.importe}"/>
+										</p:column>
+
+										<p:column headerText="Accion" style="width:120px;text-align:center" exportable="false">
+											<p:commandButton
+													title="Eliminar"
+													action="#{pedidoMB.eliminarProductoItem(pedidoItem)}"
+													ajax="true"
+													icon="ui-icon ui-icon-pencil"
+													styleClass="colorSuccess"
+													update="frmPedido:lstPedidoItem"/>
+										</p:column>
+                                    </p:dataTable>
+    		</div>
+    		</div>
+
+
+			</div>
+			<div class="row">
+
+            <div class="col-sm-4">
+            <div class="form-group">
+                   		<h:outputLabel 	for="importe"
+                   					  	value="Importe:"
+                   					  	styleClass="control-label"/>
+
+                   		<p:inputText 	autocomplete="off"
+                   						id="importe"
+                   						styleClass="form-control"
+                   						value="#{pedidoMB.pedido.importe}"
+                   						maxlength="120"
+                   						label="importe"/>
+               		</div>
+
+    		</div>
+    		 <div class="col-sm-2">
+    			<p:commandButton 	value="Actualizar"
+            						actionListener="#{pedidoMB.actualizarDetalle()}"
+                                  	styleClass="btn btn-default btn-border"
+                                  	icon="icon-magnifying-glass"
+            						ajax="true"
+            						update="lstPedidoItem,importe" />
+
+			</div>
+			</div>
+
+		</p:fieldset>
+      <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group"></div>
+        </div>
+      </div>
+		<p:fieldset>
+			    <div class="row">
+			     <div class="col-sm-3">
+					<h:outputLabel 	for="fechaAtencion"
+                   					  	value="Fecha Atención:"
+                   					  	styleClass="control-label"/>
+				</div>
+				<div class="col-sm-3">
+
+                   		<p:inputText 	autocomplete="off"
+                   						id="fechaAtencion"
+                   						styleClass="form-control"
+                   						value="#{pedidoMB.pedido.fechaAtencion}"
+                   						maxlength="40"
+                   						label="fechaAtencion"/>
+				</div>
+    	     <div class="col-sm-6 text-right" >
+            			<div class="form-group box-main-btn">
+
+            					<p:commandButton 	value="Grabar"
+                									actionListener="#{pedidoMB.grabar()}"
+                									styleClass="btn btn-primary "
+                                  					icon="icon-save"
+                									ajax="false" />
+                									<p:commandButton 	value="Cancelar"
+                									actionListener="#{pedidoMB.cancelar()}"
+                									styleClass="btn btn-default"
+                                  					icon="icon-eraser"
+                									ajax="false" />
+
+            			</div>
+            </div>
+            </div>
+		</p:fieldset>
+		</h:form>
+    </ui:define>
+
+    <ui:define name="footerCont">
+        <script type="text/javascript" charset="utf-8">
+          $("#sidebar li").removeClass("active");
+           $("#sidebar-4").addClass("active");
+        </script>
+    </ui:define>
+</ui:composition>

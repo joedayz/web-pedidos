@@ -1,0 +1,118 @@
+ <ui:composition template="/template/master.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:define name="title">
+        .:Registro de Usuarios:.
+    </ui:define>
+
+    <ui:define name="titleCont">
+        <span>Registro de Usuarios </span>
+    </ui:define>
+
+    <ui:define name="content">
+		<h:form>
+
+			<div class="row">
+
+            	<div class="col-sm-4">
+               		<div class="form-group">
+                   		<h:outputLabel 	for="codigo"
+                   					  	value="Código:"
+                   					  	styleClass="control-label"/>
+
+                   		<p:inputText 	autocomplete="off"
+                   						id="codigo"
+                   						styleClass="form-control"
+                   						value="#{usuarioMB.usuario.idUsuario}"
+                   						maxlength="120"
+                   						label="codigo"/>
+               		</div>
+            	</div>
+			</div>
+
+            <div class="row">
+
+             <div class="col-sm-4">
+               <div class="form-group">
+                   <h:outputLabel for="usuario"
+                   				  value="Usuario:"
+                   				  styleClass="control-label"/>
+
+                   <p:inputText 	autocomplete="off"
+                   					id="usuario"
+                   					styleClass="form-control"
+                   					value="#{usuarioMB.usuario.usuario}"
+                   					maxlength="120"
+                   					label="usuario"/>
+               </div>
+            </div>
+    		</div>
+
+    		<div class="row">
+
+             <div class="col-sm-4">
+               <div class="form-group">
+                   <h:outputLabel for="clave"
+                   				  value="Clave:"
+                   				  styleClass="control-label"/>
+
+                   <p:inputText 	autocomplete="off"
+                   					id="clave"
+                   					styleClass="form-control"
+                   					value="#{usuarioMB.usuario.clave}"
+                   					maxlength="120"
+                   					label="clave"/>
+               </div>
+            </div>
+    		</div>
+
+			<div class="row">
+	            <div class="col-sm-4">
+	               	<div class="form-group">
+	                   <h:outputLabel for="nombres"
+	                   				  value="Nombres:"
+	                   				  styleClass="control-label"/>
+
+	                   	<p:inputText 	autocomplete="off"
+	                   					id="nombres"
+	                   					styleClass="form-control"
+	                   					value="#{usuarioMB.usuario.nombre}"
+	                   					maxlength="120"
+	                   					label="nombres"/>
+	               		</div>
+	            </div>
+            </div>
+
+    	<div class="row">
+    	         <div class="col-sm-4 text-right" >
+            			<div class="form-group box-main-btn">
+
+            					<p:commandButton 	value="Grabar"
+                									actionListener="#{usuarioMB.grabar()}"
+                									styleClass="btn btn-primary "
+                                  icon="icon-save"
+                									ajax="false" />
+                				<p:commandButton 	value="Cancelar"
+                									actionListener="#{usuarioMB.cancelar()}"
+                									styleClass="btn btn-default"
+                									ajax="false" />
+
+            			</div>
+            </div>
+            </div>
+            		<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+		</h:form>
+    </ui:define>
+
+    <ui:define name="footerCont">
+        <script type="text/javascript" charset="utf-8">
+          $("#sidebar li").removeClass("active");
+           $("#sidebar-2").addClass("active");
+        </script>
+    </ui:define>
+</ui:composition>

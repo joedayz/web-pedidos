@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<meta charset="utf-8"/>
+		<title>Login Form</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500|Ubuntu+Condensed' rel='stylesheet' type='text/css'/>
+		<h:outputStylesheet name="css/bootstrap.min.css" />
+		<h:outputStylesheet name="css/login_base.css" />
+    <h:outputStylesheet name="css/font_ico.css" />
+	</h:head>
+	<h:body>
+<div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+  <div id="box_login" class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <h1 class="text-center"><img src="./resources/img/netun_logo_rosa.png" alt=""/></h1>
+      </div>
+      <div class="modal-body clearfix" style="padding-bottom: 40px;">
+          <h:form styleClass="form col-md-12 center-block">
+          	<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="icon-user"></i></div>
+                <p:inputText id="usuario" 
+                			value="#{loginMB.usuario.usuario}" 
+                			styleClass="form-control" 
+                			required="false" 
+                			placeholder="Email"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="icon-key"></i></div>
+                <p:password id="clave" 
+                			value="#{loginMB.usuario.clave}" 
+                			styleClass="form-control" 
+                			required="false" 
+                			placeholder="clave" />
+              </div>
+            </div>
+            <div class="form-group">
+              <p:commandButton  value="Login" update="growl" 
+              					styleClass="btn btn-primary btn-lg btn-block"
+                				action="#{loginMB.validarAcceso()}"
+                				ajax="false"
+                                />
+
+            </div>
+          </h:form>
+      </div>
+<!--       <div class="modal-footer">
+          <div class="col-md-12">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+		  </div>
+      </div> -->
+  </div>
+  </div>
+</div>
+		<h:outputScript name="./js/jquery.min.js"/>
+		<h:outputScript name="./js/bootstrap.min.js"/>
+	</h:body>
+</html>

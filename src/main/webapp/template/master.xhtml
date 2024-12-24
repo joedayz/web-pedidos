@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html
+    lang="es" class="no-js"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<meta charset="utf-8"/>
+		<title><ui:insert name="title"></ui:insert></title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500|Ubuntu+Condensed' rel='stylesheet' type='text/css'/>
+
+		<h:outputStylesheet name="css/bootstrap.min.css" />
+		<h:outputStylesheet name="css/main_base.css" />
+
+		<ui:insert name="headCont">
+        <h:outputStylesheet name="css/font_ico.css" />
+    </ui:insert>
+	</h:head>
+	<h:body>
+<nav  class="navbar navbar-default navbar-fixed-top base_primary" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand" style="display:table;padding-top: 5px;padding-bottom: 5px;"><img src="../resources/img/galaxy-training-logo_.png" alt=""  height="45" /></a>
+    </div>
+    <nav class="collapse navbar-collapse" role="navigation"  style="height:70px">
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="dropdown">
+          <button class="navbar-account-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img class="rounded" width="36" height="36" src="../resources/img/user_icons.png" alt="Teddy Wilson"/> #{loginMB.usuarioActivo.nombre}
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-right">
+            <li>
+              <a href="upgrade.html">
+                <h5 class="navbar-upgrade-heading">
+                  Administrador
+                  <small class="navbar-upgrade-notification" id="date_text"></small>
+                </h5>
+              </a>
+            </li>
+            <li class="divider"></li>
+            <li class="navbar-upgrade-version">Version: 1.0.0</li>
+            <li class="divider"></li>
+            <li><a href="#">Cambiar Clave</a></li>
+            <li><a href="../">Cerrar Sesión</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</nav>
+
+<ui:insert name="masthead">
+<!-- <div id="masthead">
+		  <div class="container base_fondo_fff">
+		      <div class="row">
+		        <div class="col-md-7">
+		          <h1>Aplicaciones Java Web
+		            <p class="lead">Java Server Faces</p>
+		          </h1>
+		        </div>
+		        <div class="col-md-5">
+		            <div class="well well-lg">
+		              <div class="row">
+		                <div class="col-sm-6">
+		        	      	<img src="//placehold.it/180x100" class="img-responsive"/>
+		                </div>
+		                <div class="col-sm-6">
+
+
+		                </div>
+		              </div>
+		            </div>
+		        </div>
+		      </div>
+		  </div>/container
+		</div>/masthead -->
+</ui:insert>
+<!--main-->
+<div class="container base_fondo_fff" style="min-height: 600px;border-radius: 4px;margin-top: 35px;margin-bottom:30px;padding-bottom: 20px; ">
+	<div class="row">
+      <!--left-->
+      <div class="col-md-2" id="leftCol">
+        <ul class="nav nav-stacked" id="sidebar">
+          <li id="sidebar-1"><a href="../inicio/panel.xhtml"><i class="icon-home"></i> Inicio</a></li>
+          <li id="sidebar-2"><a href="../maestro/perfil_listado.xhtml"><i class="icon-user"></i> Perfil</a></li>
+          <li id="sidebar-3"><a href="../maestro/usuario_listado.xhtml"><i class="icon-user"></i> Usuario</a></li>
+          <li id="sidebar-4"><a href="../maestro/producto_listado.xhtml"><i class="icon-box"></i> Producto</a></li>
+          <li id="sidebar-5"><a href="../procesos/pedido_listado.xhtml"><i class="icon-clipboard"></i> Pedido</a></li>
+		  <li id="sidebar-6"><a href="../graficos/grafico_ventas.xhtml"><i class="icon-clipboard"></i> Gráfico</a></li>
+                    
+        </ul>
+      </div><!--/left-->
+
+      <!--right-->
+      <div class="col-md-10" style="padding-right: 30px">
+        <h2 id="sec0" class="title-style"><ui:insert name="titleCont">Titulo</ui:insert></h2>
+
+		<!-- seccion para el contenido -->
+        <ui:insert name="content">
+        </ui:insert>
+
+        </div><!--/right-->
+  	</div><!--/row-->
+</div><!--/container-->
+		<h:outputScript name="js/jquery.min.js"/>
+		<h:outputScript name ="js/bootstrap.min.js" />
+		<h:outputScript name ="js/scripts.js" />
+		<ui:insert name="footerCont"></ui:insert>
+
+	</h:body>
+</html>

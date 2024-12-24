@@ -1,0 +1,57 @@
+$title: 'Ubuntu Condensed', sans-serif;
+$texto: 'Roboto', sans-serif;
+$colorBase:#015198;
+
+body {
+ font-family: $texto;
+ font-size: 14px;
+ background: $colorBase;
+}
+#box_login{
+	margin: 10% auto;
+	width: 370px;
+}
+.form-control{
+    box-shadow:none;
+    padding: 6px 12px!important;
+    &:focus{
+        box-shadow:none;
+    }
+}
+.ui-state-default{
+	text-shadow:none;
+	box-shadow:none;
+}
+.btn-lg{
+	border-radius: 3px;
+}
+.modal{
+	overflow-y:auto;
+}
+.modal-header{
+	border-bottom:0;
+}
+.ui-button-text-only .ui-button-text {
+    padding: 10px 12px!important;
+    font-size: 16px;
+}
+.input-group-addon{
+	background:#fff;
+	color:$colorBase;
+}
+.btn-primary{
+	background: $colorBase;
+	border-color:#004684;
+	&:hover{
+		background: #004684;
+		transition-delay: .5s;
+	}
+	&:active{
+		background: #004684;
+		transition-delay: .5s;
+		margin-top: 1px;
+	}
+	&:focus{
+		outline: none;
+	}
+}

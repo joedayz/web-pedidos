@@ -1,0 +1,27 @@
+ <ui:composition template="/template/master.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:define name="title">
+        .:Listado de Tabla :.
+    </ui:define>
+
+    <ui:define name="titleCont">
+        <span>Inicio </span>
+    </ui:define>
+
+    <ui:define name="content">
+		<h:form>
+			Bienvenido!!! #{loginMB.usuarioActivo.nombre}
+		</h:form>
+    </ui:define>
+
+    <ui:define name="footerCont">
+        <script type="text/javascript" charset="utf-8">
+           $("#sidebar-1").addClass("active");
+        </script>
+    </ui:define>
+</ui:composition>
