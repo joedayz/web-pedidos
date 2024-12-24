@@ -66,16 +66,3 @@ Sal de SQL*Plus y ejecuta el siguiente comando para realizar la importación del
 imp SYSTEM/123456 fromuser=JW07 touser=JW07 file=/opt/oracle/admin/XE/dpdump/jw07_28102017_1222pm.DMP
 ```
 
-## 7. Subir a GitHub
-Si deseas compartir este documento en tu repositorio de GitHub:
-
-1. Crea un archivo `README.md` en tu proyecto.
-2. Copia y pega este contenido en el archivo.
-3. Realiza el commit y empuja los cambios:
-
-```bash
-git add README.md
-git commit -m "Agregado README para importación y restauración de Oracle XE"
-git push origin main
-```
-
